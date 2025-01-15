@@ -56,7 +56,12 @@ class Investment(commands.Cog):
                 value=f"Сектор: {company.sector}\nРиск: {company.risk:.2f}\nШанс на успех: {company.success_chance:.2f}",
                 inline=True
             )
-        await self.bot.get_channel(1316794609283895306).send(embed=embed)
+
+        channel = self.bot.get_channel(1316794609283895306)
+        if channel:
+            await channel.send(embed=embed)
+        else:
+            print("Канал с указанным ID не найден. Проверьте ID канала и права доступа.")
 
     @commands.command(
         name="invest",
